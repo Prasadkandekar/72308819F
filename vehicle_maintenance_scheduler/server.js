@@ -9,6 +9,5 @@ app.use("/depots", depotRoute);
 
 const PORT = 3000;
 app.listen(PORT, async () => {
-  console.log(`Server running on port ${PORT}`);
   await Log("backend", "info", "service", `Server running on port ${PORT}`);
 });
