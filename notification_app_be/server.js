@@ -9,6 +9,5 @@ app.use("/notifications", notificationRoute);
 
 const PORT = 3000;
 app.listen(PORT, async () => {
-  console.log(`[server] Notification server running on port ${PORT}`);
   await Log("backend", "info", "service", `Notification server running on port ${PORT}`);
 });

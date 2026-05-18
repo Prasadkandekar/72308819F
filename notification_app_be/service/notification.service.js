@@ -15,23 +15,19 @@ const TYPE_WEIGHT = {
 };
 
 async function fetchFromAPI() {
-  console.log(`[service] Fetching notifications from ${NOTIFICATION_API}`);
   await Log("backend", "info", "service", "Fetching notifications from external API");
   const response = await axios.get(NOTIFICATION_API, {
     headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
   });
-  console.log(`[service] External API response status: ${response.status}, count: ${response.data.notifications?.length}`);
   return response.data.notifications;
 }
 
 async function getAllNotifications() {
   try {
     const notifications = await fetchFromAPI();
-    console.log(`[service] getAllNotifications - total: ${notifications.length}`);
     await Log("backend", "info", "service", `Fetched ${notifications.length} notifications`);
     return { notifications };
   } catch (err) {
-    console.error(`[service] getAllNotifications error:`, err.message);
     await Log("backend", "error", "service", truncate(`Fetch failed: ${err.message}`));
     throw err;
   }
@@ -49,11 +45,9 @@ async function getPriorityNotifications(n) {
     });
 
     const top = sorted.slice(0, n);
-    console.log(`[service] getPriorityNotifications - top ${n} selected from ${notifications.length}`);
     await Log("backend", "info", "service", `Returning top ${n} priority notifications`);
     return { notifications: top };
   } catch (err) {
-    console.error(`[service] getPriorityNotifications error:`, err.message);
     await Log("backend", "error", "service", truncate(`Priority fetch failed: ${err.message}`));
     throw err;
   }
