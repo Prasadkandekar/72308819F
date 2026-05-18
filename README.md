@@ -1,9 +1,5 @@
-# AffordMed Backend - Implementation Overview
+# Implementation Overview
 
-This project contains two backend services built with Node.js and Express,
-both connected to an external evaluation API for data and logging.
-
----
 
 ## Problem 1: Vehicle Maintenance Scheduler
 
